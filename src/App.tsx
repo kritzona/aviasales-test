@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import AppStyled from './AppStyled'
+import { Switch, Route } from 'react-router-dom'
+import HomeView from './views/HomeView/HomeView'
 
-function App() {
+interface IProps {}
+
+const App = (props: IProps) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <AppStyled>
+      <Switch>
+        <Route path="/" exact>
+          <HomeView />
+        </Route>
+      </Switch>
+    </AppStyled>
+  )
 }
 
-export default App;
+export default App
