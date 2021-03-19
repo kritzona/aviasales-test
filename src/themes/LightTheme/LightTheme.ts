@@ -3,9 +3,9 @@ import { DefaultTheme } from 'styled-components'
 const LightTheme: DefaultTheme = {
   name: 'light',
   sizes: {
-    stepSize: 0,
+    stepSize: 10,
 
-    borderRadius: 0,
+    borderRadius: 5,
 
     tlFontSize: 0,
     tlLineHeight: 0,
@@ -40,7 +40,7 @@ const LightTheme: DefaultTheme = {
     backgroundColor: '#F3F7FA',
   },
   effects: {
-    cardBoxShadow: '',
+    cardBoxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)',
     defaultTransition: 'all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1)',
   },
   mediaQueries: {
