@@ -5,7 +5,9 @@ interface IProps {
 }
 
 const FilterBodyStyled = styled.div<IProps>`
-  ${({ theme }) => css``}
+  ${({ theme }) => css`
+    padding-bottom: ${theme.sizes.stepSize}px;
+  `}
 `
 
 export default FilterBodyStyled
