@@ -7,35 +7,32 @@ const LightTheme: DefaultTheme = {
 
     borderRadius: 5,
 
-    tlFontSize: 0,
-    tlLineHeight: 0,
+    tlFontSize: 24,
+    tlLineHeight: 24,
 
-    tmFontSize: 0,
-    tmLineHeight: 0,
+    tmFontSize: 14,
+    tmLineHeight: 21,
 
-    tnFontSize: 0,
-    tnLineHeight: 0,
+    tnFontSize: 12,
+    tnLineHeight: 18,
 
-    tsFontSize: 0,
-    tsLineHeight: 0,
-
-    regularFontWeight: 0,
-    semiBoldFontWeight: 0,
-    boldFontWeight: 0,
+    regularFontWeight: 400,
+    semiBoldFontWeight: 600,
+    boldFontWeight: 700,
   },
   colors: {
-    primaryColor: '',
-    hoverPrimaryColor: '',
-    activePrimaryColor: '',
+    primaryColor: '#2196F3',
+    hoverPrimaryColor: '#2196F3',
+    activePrimaryColor: '#2196F3',
 
-    errorColor: '',
-    successColor: '',
-    infoColor: '',
+    errorColor: '#EB5757',
+    successColor: '#27AE60',
+    infoColor: '#2196F3',
 
-    whiteColor: '',
-    blackColor: '',
-    greyColor: '',
-    lightGreyColor: '',
+    whiteColor: '#FFFFFF',
+    blackColor: '#4A4A4A',
+    greyColor: '#A0B0B9',
+    lightGreyColor: '#DFE5EC',
 
     backgroundColor: '#F3F7FA',
   },

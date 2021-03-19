@@ -5,7 +5,10 @@ interface IProps {
 }
 
 const FilterHeaderStyled = styled.div<IProps>`
-  ${({ theme }) => css``}
+  ${({ theme }) => css`
+    padding: ${theme.sizes.stepSize * 2}px;
+    padding-bottom: ${theme.sizes.stepSize}px;
+  `}
 `
 
 export default FilterHeaderStyled
