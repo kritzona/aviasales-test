@@ -4,6 +4,14 @@ import TicketInfoItem from './TicketInfoItem/TicketInfoItem'
 import Row from '../../../atoms/Row/Row'
 import Column from '../../../atoms/Column/Column'
 import { ITicketSegmentItem } from '../../../../store/ticket/types'
+import {
+  calcDestinationTime,
+  formatOriginToDestination,
+  formatPeriodAtOriginToDestination,
+  formatStopCount,
+  formatStops,
+} from '../../../../utils/formatter'
+import { formatLeftoversTime } from '../../../../utils/date'
 
 interface IProps {
   segments: ITicketSegmentItem[]
@@ -16,13 +24,36 @@ const TicketInfo = (props: IProps) => {
         return (
           <Row gutter={true}>
             <Column size={4}>
-              <TicketInfoItem />
+              <TicketInfoItem
+                title={formatOriginToDestination(
+                  segment.origin,
+                  segment.destination,
+                )}
+                value={formatPeriodAtOriginToDestination(
+                  segment.date,
+                  segment.duration,
+                )}
+              />
             </Column>
             <Column size={4}>
-              <TicketInfoItem />
+              <TicketInfoItem
+                title="В пути"
+                value={formatLeftoversTime(
+                  new Date(segment.date),
+                  new Date(
+                    calcDestinationTime(
+                      new Date(segment.date),
+                      segment.duration,
+                    ),
+                  ),
+                )}
+              />
             </Column>
             <Column size={4}>
-              <TicketInfoItem />
+              <TicketInfoItem
+                title={formatStopCount(segment.stops.length)}
+                value={formatStops(segment.stops)}
+              />
             </Column>
           </Row>
         )

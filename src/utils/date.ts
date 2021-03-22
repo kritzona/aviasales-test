@@ -64,3 +64,19 @@ export const formatPeriod = (
 
   return `${formattedTimeOfStartDate} - ${formattedTimeOfEndDate}`
 }
+export const formatLeftoversTime = (
+  startDate: Date | string,
+  endDate: Date | string,
+) => {
+  const startDateToTimestamp = new Date(startDate).getTime()
+  const endDateToTimestamp = new Date(endDate).getTime()
+  const leftoversTime = new Date(endDateToTimestamp - startDateToTimestamp)
+
+  const leftoversDays = leftoversTime.getUTCDate() - 1
+  const leftoversHours = leftoversTime.getUTCHours()
+  const leftoversMinutes = leftoversTime.getUTCMinutes()
+
+  return `${
+    leftoversDays > 0 ? `${dayToString(leftoversDays)}д ` : ''
+  }${leftoversHours}ч ${leftoversMinutes}м`
+}

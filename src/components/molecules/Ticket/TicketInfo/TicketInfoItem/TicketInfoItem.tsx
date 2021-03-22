@@ -5,19 +5,22 @@ import TicketInfoItemStyled, {
 } from './TicketInfoItemStyled'
 import Text from '../../../../atoms/Text/Text'
 
-interface IProps {}
+interface IProps {
+  title: string
+  value: string
+}
 
 const TicketInfoItem = (props: IProps) => {
   return (
     <TicketInfoItemStyled>
       <TicketInfoItemTitleStyled>
         <Text type="normal-text" transform="uppercase" weight="semibold">
-          MOW - HKT
+          {props.title}
         </Text>
       </TicketInfoItemTitleStyled>
       <TicketInfoItemValueStyled>
-        <Text type="medium-text" transform="uppercase" weight="semibold">
-          10:45 - 08:00
+        <Text type="medium-text" weight="semibold">
+          {props.value}
         </Text>
       </TicketInfoItemValueStyled>
     </TicketInfoItemStyled>
