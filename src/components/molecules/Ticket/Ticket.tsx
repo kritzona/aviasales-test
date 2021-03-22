@@ -3,15 +3,18 @@ import TicketStyled, { TicketCardWrapperStyled } from './TicketStyled'
 import Card from '../Card/Card'
 import TicketHeader from './TicketHeader/TicketHeader'
 import TicketInfo from './TicketInfo/TicketInfo'
+import { ITicketItem } from '../../../store/ticket/types'
 
-interface IProps {}
+interface IProps {
+  item: ITicketItem
+}
 
 const Ticket = (props: IProps) => {
   return (
     <TicketStyled>
       <Card>
         <TicketCardWrapperStyled>
-          <TicketHeader />
+          <TicketHeader price={props.item.price} />
           <TicketInfo />
         </TicketCardWrapperStyled>
       </Card>

@@ -13,10 +13,10 @@ const Tickets = (props: IProps) => {
   return (
     <TicketsStyled>
       <Row gutter={true}>
-        {props.items.map((item) => {
+        {props.items.map((item, itemIndex) => {
           return (
-            <Column size={12}>
-              <Ticket />
+            <Column key={itemIndex} size={12}>
+              <Ticket item={item} />
             </Column>
           )
         })}

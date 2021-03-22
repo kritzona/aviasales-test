@@ -4,15 +4,18 @@ import TicketHeaderStyled, {
   TicketHeaderPriceStyled,
 } from './TicketHeaderStyled'
 import Text from '../../../atoms/Text/Text'
+import { formatPrice } from '../../../../utils/formatter'
 
-interface IProps {}
+interface IProps {
+  price: number
+}
 
 const TicketHeader = (props: IProps) => {
   return (
     <TicketHeaderStyled>
       <TicketHeaderPriceStyled>
-        <Text type="large-text" weight="semibold">
-          13 400 Р
+        <Text type="large-text" weight="semibold" transform="uppercase">
+          {formatPrice(props.price, 'Р')}
         </Text>
       </TicketHeaderPriceStyled>
       <TicketHeaderLogoStyled />

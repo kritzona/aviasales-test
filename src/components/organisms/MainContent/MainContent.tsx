@@ -10,6 +10,8 @@ import Button from '../../atoms/Button/Button'
 import { ITicketItem } from '../../../store/ticket/types'
 
 interface IProps {
+  ticketLimit: number
+  ticketTotalCount: number
   ticketItems: ITicketItem[]
   onAddLimit?: () => void
 }
@@ -33,11 +35,14 @@ const MainContent = (props: IProps) => {
               <Column size={12}>
                 <Tickets items={props.ticketItems} />
               </Column>
-              <Column size={12}>
-                <Button onClick={() => handleAddLimitButtonClick()}>
-                  Показать еще 5 билетов!
-                </Button>
-              </Column>
+              {props.ticketTotalCount > 5 &&
+                props.ticketTotalCount - (props.ticketLimit + 5) > 0 && (
+                  <Column size={12}>
+                    <Button onClick={() => handleAddLimitButtonClick()}>
+                      Показать еще 5 билетов!
+                    </Button>
+                  </Column>
+                )}
             </Row>
           </Column>
         </Row>

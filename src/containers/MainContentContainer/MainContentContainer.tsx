@@ -17,14 +17,16 @@ const MainContentContainer = (props: IProps) => {
   const ticketItems = useSelector((state: RootState) =>
     state.ticket.items.slice(0, state.ticket.limit),
   )
+  const ticketTotalCount = useSelector(
+    (state: RootState) => state.ticket.items.length,
+  )
+  const ticketLimit = useSelector((state: RootState) => state.ticket.limit)
   const dispatch = useDispatch()
 
   const handleAddLimit = () => dispatch(ticketAddLimitAction(5))
 
   useEffect(() => {
-    if (ticketSearchId) {
-      dispatch(ticketFetchItemsAction(ticketSearchId))
-    }
+    if (ticketSearchId) dispatch(ticketFetchItemsAction(ticketSearchId))
 
     // eslint-disable-next-line
   }, [ticketSearchId])
@@ -36,6 +38,8 @@ const MainContentContainer = (props: IProps) => {
 
   return (
     <MainContent
+      ticketLimit={ticketLimit}
+      ticketTotalCount={ticketTotalCount}
       ticketItems={ticketItems}
       onAddLimit={() => handleAddLimit()}
     />
