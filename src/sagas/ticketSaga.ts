@@ -1,4 +1,4 @@
-import { put, call, takeLatest } from 'redux-saga/effects'
+import { call, put, takeLatest } from 'redux-saga/effects'
 import {
   ETicketActionTypes,
   ITicketFetchItemsAction,
@@ -10,6 +10,7 @@ import ticketAPI, {
 import { ERestAPIStatuses, TRestAPIResponse } from '../api/RestAPI'
 import {
   ticketAddItemsAction,
+  ticketSetErrorConnectAction,
   ticketSetSearchIdAction,
   ticketSetStopAction,
 } from '../store/ticket/actions'
@@ -28,19 +29,25 @@ function* takeSearchIdAsync() {
 }
 
 function* fetchItemsAsync(action: ITicketFetchItemsAction) {
-  const response: TRestAPIResponse<ITicketAPIResponseData> = yield call(
-    ticketAPI.fetchItems,
-    action.payload.searchId,
-  )
-  switch (response.status) {
-    case ERestAPIStatuses.SUCCESS:
-      let ticketItems = response.data.tickets
-      let stop = response.data.stop
+  try {
+    const response: TRestAPIResponse<ITicketAPIResponseData> = yield call(
+      ticketAPI.fetchItems,
+      action.payload.searchId,
+    )
+    switch (response.status) {
+      case ERestAPIStatuses.SUCCESS:
+        let ticketItems = response.data.tickets
+        let stop = response.data.stop
 
-      yield put(ticketAddItemsAction(ticketItems))
-      yield put(ticketSetStopAction(stop))
-      break
-  }
+        yield put(ticketSetStopAction(stop))
+        yield put(ticketAddItemsAction(ticketItems))
+        yield put(ticketSetErrorConnectAction(false))
+        break
+      case ERestAPIStatuses.ERROR:
+        yield put(ticketSetErrorConnectAction(true))
+        break
+    }
+  } catch (e) {}
 }
 
 export default function* ticketSaga() {

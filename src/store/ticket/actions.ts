@@ -7,6 +7,7 @@ import {
   ITicketItem,
   ITicketResetAction,
   ITicketResetLimitAction,
+  ITicketSetErrorConnectAction,
   ITicketSetSearchIdAction,
   ITicketSetStopAction,
   ITicketTakeSearchIdAction,
@@ -54,4 +55,10 @@ export const ticketResetLimitAction = (
   limit: number,
 ): ITicketResetLimitAction => ({
   type: ETicketActionTypes.RESET_LIMIT,
+})
+export const ticketSetErrorConnectAction = (
+  errorConnect: boolean,
+): ITicketSetErrorConnectAction => ({
+  type: ETicketActionTypes.SET_ERROR_CONNECT,
+  payload: { errorConnect },
 })

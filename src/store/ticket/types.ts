@@ -24,6 +24,7 @@ export interface ITicketState {
   items: ITicketItem[]
   stop: boolean
   limit: number
+  errorConnect: boolean
 }
 
 export enum ETicketActionTypes {
@@ -36,6 +37,7 @@ export enum ETicketActionTypes {
   SET_SEARCH_ID = 'ticket/SET_SEARCH_ID',
   ADD_LIMIT = 'ticket/ADD_LIMIT',
   RESET_LIMIT = 'ticket/RESET_LIMIT',
+  SET_ERROR_CONNECT = 'ticket/SET_ERROR_CONNECT',
 }
 
 export interface ITicketAddItemAction {
@@ -71,6 +73,10 @@ export interface ITicketAddLimitAction {
 export interface ITicketResetLimitAction {
   type: ETicketActionTypes.RESET_LIMIT
 }
+export interface ITicketSetErrorConnectAction {
+  type: ETicketActionTypes.SET_ERROR_CONNECT
+  payload: { errorConnect: boolean }
+}
 
 export type TTicketAction =
   | ITicketAddItemAction
@@ -82,3 +88,4 @@ export type TTicketAction =
   | ITicketSetSearchIdAction
   | ITicketAddLimitAction
   | ITicketResetLimitAction
+  | ITicketSetErrorConnectAction

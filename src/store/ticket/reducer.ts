@@ -5,6 +5,7 @@ const initialState: ITicketState = {
   items: [],
   stop: false,
   limit: 5,
+  errorConnect: false,
 }
 
 export const ticketReducer = (
@@ -32,6 +33,9 @@ export const ticketReducer = (
       return state
     case ETicketActionTypes.RESET_LIMIT:
       state.limit = initialState.limit
+      return state
+    case ETicketActionTypes.SET_ERROR_CONNECT:
+      state.errorConnect = action.payload.errorConnect
       return state
     default:
       return state

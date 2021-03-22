@@ -20,9 +20,9 @@ interface IProps {
 const TicketInfo = (props: IProps) => {
   return (
     <TicketInfoStyled>
-      {props.segments.map((segment) => {
+      {props.segments.map((segment, segmentIndex) => {
         return (
-          <Row gutter={true}>
+          <Row key={segmentIndex} gutter={true}>
             <Column size={4}>
               <TicketInfoItem
                 title={formatOriginToDestination(
