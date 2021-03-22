@@ -4,6 +4,7 @@ const initialState: ITicketState = {
   searchId: null,
   items: [],
   stop: false,
+  limit: 5,
 }
 
 export const ticketReducer = (
@@ -25,6 +26,12 @@ export const ticketReducer = (
       return state
     case ETicketActionTypes.SET_SEARCH_ID:
       state.searchId = action.payload.searchId
+      return state
+    case ETicketActionTypes.ADD_LIMIT:
+      state.limit = state.limit + action.payload.limit
+      return state
+    case ETicketActionTypes.RESET_LIMIT:
+      state.limit = initialState.limit
       return state
     default:
       return state

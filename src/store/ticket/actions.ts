@@ -2,9 +2,11 @@ import {
   ETicketActionTypes,
   ITicketAddItemAction,
   ITicketAddItemsAction,
+  ITicketAddLimitAction,
   ITicketFetchItemsAction,
   ITicketItem,
   ITicketResetAction,
+  ITicketResetLimitAction,
   ITicketSetSearchIdAction,
   ITicketSetStopAction,
   ITicketTakeSearchIdAction,
@@ -43,4 +45,13 @@ export const ticketSetSearchIdAction = (
 ): ITicketSetSearchIdAction => ({
   type: ETicketActionTypes.SET_SEARCH_ID,
   payload: { searchId },
+})
+export const ticketAddLimitAction = (limit: number): ITicketAddLimitAction => ({
+  type: ETicketActionTypes.ADD_LIMIT,
+  payload: { limit },
+})
+export const ticketResetLimitAction = (
+  limit: number,
+): ITicketResetLimitAction => ({
+  type: ETicketActionTypes.RESET_LIMIT,
 })

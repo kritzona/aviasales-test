@@ -3,6 +3,7 @@ import MainContent from '../../components/organisms/MainContent/MainContent'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store/store'
 import {
+  ticketAddLimitAction,
   ticketFetchItemsAction,
   ticketTakeSearchIdAction,
 } from '../../store/ticket/actions'
@@ -13,8 +14,12 @@ const MainContentContainer = (props: IProps) => {
   const ticketSearchId = useSelector(
     (state: RootState) => state.ticket.searchId,
   )
-  const ticketItems = useSelector((state: RootState) => state.ticket.items)
+  const ticketItems = useSelector((state: RootState) =>
+    state.ticket.items.slice(0, state.ticket.limit),
+  )
   const dispatch = useDispatch()
+
+  const handleAddLimit = () => dispatch(ticketAddLimitAction(5))
 
   useEffect(() => {
     if (ticketSearchId) {
@@ -28,11 +33,13 @@ const MainContentContainer = (props: IProps) => {
 
     // eslint-disable-next-line
   }, [])
-  useEffect(() => {
-    console.log(ticketItems)
-  }, [ticketItems])
 
-  return <MainContent ticketItems={ticketItems} />
+  return (
+    <MainContent
+      ticketItems={ticketItems}
+      onAddLimit={() => handleAddLimit()}
+    />
+  )
 }
 
 export default MainContentContainer

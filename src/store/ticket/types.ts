@@ -36,6 +36,7 @@ export interface ITicketState {
   searchId: string | null
   items: ITicketItem[]
   stop: boolean
+  limit: number
 }
 
 export enum ETicketActionTypes {
@@ -46,6 +47,8 @@ export enum ETicketActionTypes {
   TAKE_SEARCH_ID = 'ticket/TAKE_SEARCH_ID',
   SET_STOP = 'ticket/SET_STOP',
   SET_SEARCH_ID = 'ticket/SET_SEARCH_ID',
+  ADD_LIMIT = 'ticket/ADD_LIMIT',
+  RESET_LIMIT = 'ticket/RESET_LIMIT',
 }
 
 export interface ITicketAddItemAction {
@@ -74,6 +77,13 @@ export interface ITicketSetSearchIdAction {
   type: ETicketActionTypes.SET_SEARCH_ID
   payload: { searchId: string }
 }
+export interface ITicketAddLimitAction {
+  type: ETicketActionTypes.ADD_LIMIT
+  payload: { limit: number }
+}
+export interface ITicketResetLimitAction {
+  type: ETicketActionTypes.RESET_LIMIT
+}
 
 export type TTicketAction =
   | ITicketAddItemAction
@@ -83,3 +93,5 @@ export type TTicketAction =
   | ITicketTakeSearchIdAction
   | ITicketSetStopAction
   | ITicketSetSearchIdAction
+  | ITicketAddLimitAction
+  | ITicketResetLimitAction

@@ -11,9 +11,13 @@ import { ITicketItem } from '../../../store/ticket/types'
 
 interface IProps {
   ticketItems: ITicketItem[]
+  onAddLimit?: () => void
 }
 
 const MainContent = (props: IProps) => {
+  const handleAddLimitButtonClick = () =>
+    props.onAddLimit ? props.onAddLimit() : null
+
   return (
     <MainContentStyled>
       <Wrapper>
@@ -27,10 +31,12 @@ const MainContent = (props: IProps) => {
                 <Tabs />
               </Column>
               <Column size={12}>
-                <Tickets />
+                <Tickets items={props.ticketItems} />
               </Column>
               <Column size={12}>
-                <Button>Показать еще 5 билетов!</Button>
+                <Button onClick={() => handleAddLimitButtonClick()}>
+                  Показать еще 5 билетов!
+                </Button>
               </Column>
             </Row>
           </Column>
