@@ -15,7 +15,7 @@ const Ticket = (props: IProps) => {
       <Card>
         <TicketCardWrapperStyled>
           <TicketHeader price={props.item.price} />
-          <TicketInfo />
+          <TicketInfo segments={props.item.segments} />
         </TicketCardWrapperStyled>
       </Card>
     </TicketStyled>
