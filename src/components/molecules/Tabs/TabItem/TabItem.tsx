@@ -1,10 +1,12 @@
 import React from 'react'
 import TabItemStyled from './TabItemStyled'
 
-interface IProps {}
+interface IProps {
+  children?: React.ReactNode
+}
 
 const TabItem = (props: IProps) => {
-  return <TabItemStyled />
+  return <TabItemStyled>{props.children}</TabItemStyled>
 }
 
 export default TabItem

@@ -5,6 +5,7 @@ import Column from '../../atoms/Column/Column'
 import Sidebar from '../Sidebar/Sidebar'
 import Tickets from '../Tickets/Tickets'
 import Wrapper from '../../atoms/Wrapper/Wrapper'
+import Tabs from '../../molecules/Tabs/Tabs'
 
 interface IProps {}
 
@@ -17,7 +18,14 @@ const MainContent = (props: IProps) => {
             <Sidebar></Sidebar>
           </Column>
           <Column size={8}>
-            <Tickets></Tickets>
+            <Row gutter={true}>
+              <Column size={12}>
+                <Tabs />
+              </Column>
+              <Column size={12}>
+                <Tickets />
+              </Column>
+            </Row>
           </Column>
         </Row>
       </Wrapper>
