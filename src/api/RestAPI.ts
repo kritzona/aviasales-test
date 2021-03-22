@@ -31,6 +31,9 @@ abstract class RestAPI {
     port: number | null,
   ) {
     this.url = `${protocol}://${hostname}${port ? `:${port}` : ''}`
+
+    this.index = this.index.bind(this)
+    this.getRequest = this.getRequest.bind(this)
   }
 
   protected async index<T>(
