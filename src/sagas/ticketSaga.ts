@@ -2,7 +2,6 @@ import { put, call, takeLatest } from 'redux-saga/effects'
 import {
   ETicketActionTypes,
   ITicketFetchItemsAction,
-  ITicketTakeSearchIdAction,
 } from '../store/ticket/types'
 import ticketAPI, {
   ITicketAPIResponseData,

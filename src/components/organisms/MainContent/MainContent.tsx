@@ -7,8 +7,11 @@ import Tickets from '../Tickets/Tickets'
 import Wrapper from '../../atoms/Wrapper/Wrapper'
 import Tabs from '../../molecules/Tabs/Tabs'
 import Button from '../../atoms/Button/Button'
+import { ITicketItem } from '../../../store/ticket/types'
 
-interface IProps {}
+interface IProps {
+  ticketItems: ITicketItem[]
+}
 
 const MainContent = (props: IProps) => {
   return (
@@ -16,7 +19,7 @@ const MainContent = (props: IProps) => {
       <Wrapper>
         <Row gutter={true}>
           <Column size={4}>
-            <Sidebar></Sidebar>
+            <Sidebar />
           </Column>
           <Column size={8}>
             <Row gutter={true}>
