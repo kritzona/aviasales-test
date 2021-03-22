@@ -37,6 +37,16 @@ const monthToString = (month: number): string => {
 }
 const yearToString = (year: number): string => `${year}`
 
+export const formatDate = (date: Date) => {
+  const day = dayToString(date.getDate() || 0)
+  const month = monthToString(date.getMonth() || 0)
+  const year = yearToString(date.getFullYear() || 0)
+
+  const hours = hoursToString(date.getHours() || 0)
+  const minutes = minutesToString(date.getMinutes() || 0)
+
+  return `${day} ${month} ${year} ${hours}:${minutes}`
+}
 export const formatTime = (date: Date | string): string => {
   const ctxDate = new Date(date)
 
