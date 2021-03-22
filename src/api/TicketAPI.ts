@@ -1,11 +1,11 @@
 import { ITicketItem } from '../store/ticket/types'
 import RestAPI, { TRestAPIProtocol, TRestAPIResponse } from './RestAPI'
 
-interface ITicketResponseData {
+export interface ITicketAPIResponseData {
   tickets: ITicketItem[]
   stop: boolean
 }
-interface ITicketSearchIdResponseData {
+export interface ITicketAPISearchIdResponseData {
   searchId: string
 }
 
@@ -23,12 +23,12 @@ class TicketAPI extends RestAPI {
 
   public async fetchItems(
     searchId: string,
-  ): Promise<TRestAPIResponse<ITicketResponseData>> {
-    return await super.index<ITicketResponseData>('tickets', { searchId })
+  ): Promise<TRestAPIResponse<ITicketAPIResponseData>> {
+    return await super.index<ITicketAPIResponseData>('tickets', { searchId })
   }
 
   public async takeSearchId(): Promise<
-    TRestAPIResponse<ITicketSearchIdResponseData>
+    TRestAPIResponse<ITicketAPISearchIdResponseData>
   > {
     return await super.index('search', {})
   }

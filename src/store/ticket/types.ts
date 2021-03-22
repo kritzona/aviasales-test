@@ -32,8 +32,54 @@ export interface ITicketItem {
     },
   ]
 }
-
 export interface ITicketState {
   searchId: string | null
   items: ITicketItem[]
+  stop: boolean
 }
+
+export enum ETicketActionTypes {
+  ADD_ITEM = 'ticket/ADD_ITEM',
+  ADD_ITEMS = 'ticket/ADD_ITEMS',
+  RESET = 'ticket/RESET',
+  FETCH_ITEMS = 'ticket/FETCH_ITEMS',
+  TAKE_SEARCH_ID = 'ticket/TAKE_SEARCH_ID',
+  SET_STOP = 'ticket/SET_STOP',
+  SET_SEARCH_ID = 'ticket/SET_SEARCH_ID',
+}
+
+export interface ITicketAddItemAction {
+  type: ETicketActionTypes.ADD_ITEM
+  payload: { item: ITicketItem }
+}
+export interface ITicketAddItemsAction {
+  type: ETicketActionTypes.ADD_ITEMS
+  payload: { items: ITicketItem[] }
+}
+export interface ITicketResetAction {
+  type: ETicketActionTypes.RESET
+}
+export interface ITicketFetchItemsAction {
+  type: ETicketActionTypes.FETCH_ITEMS
+  payload: { searchId: string }
+}
+export interface ITicketTakeSearchIdAction {
+  type: ETicketActionTypes.TAKE_SEARCH_ID
+}
+export interface ITicketSetStopAction {
+  type: ETicketActionTypes.SET_STOP
+  payload: { stop: boolean }
+}
+export interface ITicketSetSearchIdAction {
+  type: ETicketActionTypes.SET_SEARCH_ID
+  payload: { searchId: string }
+}
+
+export type TTicketAction =
+  | ITicketAddItemAction
+  | ITicketAddItemsAction
+  | ITicketResetAction
+  | ITicketFetchItemsAction
+  | ITicketTakeSearchIdAction
+  | ITicketSetStopAction
+  | ITicketSetSearchIdAction
