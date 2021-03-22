@@ -6,6 +6,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import Tickets from '../Tickets/Tickets'
 import Wrapper from '../../atoms/Wrapper/Wrapper'
 import Tabs from '../../molecules/Tabs/Tabs'
+import Button from '../../atoms/Button/Button'
 
 interface IProps {}
 
@@ -24,6 +25,9 @@ const MainContent = (props: IProps) => {
               </Column>
               <Column size={12}>
                 <Tickets />
+              </Column>
+              <Column size={12}>
+                <Button>Показать еще 5 билетов!</Button>
               </Column>
             </Row>
           </Column>

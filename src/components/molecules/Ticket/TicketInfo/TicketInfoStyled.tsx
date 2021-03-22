@@ -5,7 +5,11 @@ interface IProps {
 }
 
 const TicketInfoStyled = styled.div<IProps>`
-  ${({ theme }) => css``}
+  ${({ theme }) => css`
+    & > *:not(:first-child) {
+      margin-top: ${theme.sizes.stepSize}px;
+    }
+  `}
 `
 
 export default TicketInfoStyled

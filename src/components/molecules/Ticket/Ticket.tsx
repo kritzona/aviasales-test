@@ -1,5 +1,5 @@
 import React from 'react'
-import TicketStyled from './TicketStyled'
+import TicketStyled, { TicketCardWrapperStyled } from './TicketStyled'
 import Card from '../Card/Card'
 import TicketHeader from './TicketHeader/TicketHeader'
 import TicketInfo from './TicketInfo/TicketInfo'
@@ -10,8 +10,10 @@ const Ticket = (props: IProps) => {
   return (
     <TicketStyled>
       <Card>
-        <TicketHeader />
-        <TicketInfo />
+        <TicketCardWrapperStyled>
+          <TicketHeader />
+          <TicketInfo />
+        </TicketCardWrapperStyled>
       </Card>
     </TicketStyled>
   )

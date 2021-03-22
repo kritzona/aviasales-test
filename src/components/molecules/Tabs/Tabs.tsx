@@ -10,7 +10,7 @@ const Tabs = (props: IProps) => {
     <TabsStyled>
       <TabItemWrapperStyled>
         <TabItem>
-          <Text type="normal-text" transform="uppercase">
+          <Text type="normal-text" transform="uppercase" weight="semibold">
             Самый дешевый
           </Text>
         </TabItem>
@@ -18,7 +18,7 @@ const Tabs = (props: IProps) => {
 
       <TabItemWrapperStyled>
         <TabItem>
-          <Text type="normal-text" transform="uppercase">
+          <Text type="normal-text" transform="uppercase" weight="semibold">
             Самый быстрый
           </Text>
         </TabItem>
@@ -26,7 +26,7 @@ const Tabs = (props: IProps) => {
 
       <TabItemWrapperStyled>
         <TabItem>
-          <Text type="normal-text" transform="uppercase">
+          <Text type="normal-text" transform="uppercase" weight="semibold">
             Оптимальный
           </Text>
         </TabItem>

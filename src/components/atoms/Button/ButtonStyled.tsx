@@ -10,7 +10,7 @@ const ButtonStyled = styled.button.attrs<IProps>((props: IProps) => ({
 }))`
   ${({ theme }) => css`
     margin: 0;
-    padding: ${theme.sizes.tnFontSize}px ${theme.sizes.tnFontSize * 3}px;
+    padding: ${theme.sizes.stepSize * 1.5}px ${theme.sizes.stepSize * 2}px;
     outline: none;
     box-shadow: ${theme.effects.cardBoxShadow};
     cursor: pointer;
@@ -65,7 +65,7 @@ const ButtonStyled = styled.button.attrs<IProps>((props: IProps) => ({
       color: ${theme.colors.whiteColor};
 
       box-shadow: none;
-      transform: scale(0.95);
+      transform: scale(0.98);
     }
   `}
 `

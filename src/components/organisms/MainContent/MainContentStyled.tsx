@@ -5,7 +5,9 @@ interface IProps {
 }
 
 const MainContentStyled = styled.div<IProps>`
-  ${({ theme }) => css``}
+  ${({ theme }) => css`
+    padding-bottom: ${theme.sizes.stepSize * 5}px;
+  `}
 `
 
 export default MainContentStyled

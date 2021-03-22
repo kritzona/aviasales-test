@@ -1,5 +1,6 @@
 import React from 'react'
 import ButtonStyled from './ButtonStyled'
+import Text from '../Text/Text'
 
 interface IProps {
   type?: 'button' | 'reset' | 'submit'
@@ -12,7 +13,9 @@ const Button = (props: IProps) => {
 
   return (
     <ButtonStyled type={props.type} onClick={() => handleClick()}>
-      {props.children}
+      <Text type="normal-text" weight="semibold" transform="uppercase">
+        {props.children}
+      </Text>
     </ButtonStyled>
   )
 }

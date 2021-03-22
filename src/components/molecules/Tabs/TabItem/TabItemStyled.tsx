@@ -12,6 +12,7 @@ const TabItemStyled = styled.div<IProps>`
     color: ${theme.colors.blackColor};
     cursor: pointer;
     text-align: center;
+    transition: ${theme.effects.defaultTransition};
 
     &:hover {
       background-color: ${theme.colors.primaryColor};
