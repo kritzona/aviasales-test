@@ -1,10 +1,12 @@
 import React from 'react'
 import CheckboxStyled from './CheckboxStyled'
 
-interface IProps {}
+interface IProps {
+  checked: boolean
+}
 
 const Checkbox = (props: IProps) => {
-  return <CheckboxStyled />
+  return <CheckboxStyled checked={props.checked} />
 }
 
 export default Checkbox

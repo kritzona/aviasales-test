@@ -12,12 +12,12 @@ import {
   sortTicketItemsByFast,
   sortTicketItemsByOptimal,
 } from '../../utils/sort'
-import { ITicketItem } from '../../store/ticket/types'
 
 interface IProps {}
 
 const MainContentContainer = (props: IProps) => {
   const [changedSort, setChangedSort] = useState<string | number>('cheap')
+  const [changedStops, setChangedStops] = useState<string[] | number[]>([])
 
   const ticketSearchId = useSelector(
     (state: RootState) => state.ticket.searchId,
@@ -59,20 +59,19 @@ const MainContentContainer = (props: IProps) => {
     // eslint-disable-next-line
   }, [])
   useEffect(() => {
-    if (ticketSearchId)
-      setTimeout(() => dispatch(ticketFetchItemsAction(ticketSearchId)), 200)
+    if (ticketSearchId) dispatch(ticketFetchItemsAction(ticketSearchId))
 
     // eslint-disable-next-line
   }, [ticketSearchId])
   useEffect(() => {
     if (ticketTotalCount > 0 && !ticketStop && ticketSearchId)
-      setTimeout(() => dispatch(ticketFetchItemsAction(ticketSearchId)), 200)
+      dispatch(ticketFetchItemsAction(ticketSearchId))
 
     // eslint-disable-next-line
   }, [ticketTotalCount])
   useEffect(() => {
     if (ticketErrorConnect && ticketSearchId)
-      setTimeout(() => dispatch(ticketFetchItemsAction(ticketSearchId)), 200)
+      dispatch(ticketFetchItemsAction(ticketSearchId))
 
     // eslint-disable-next-line
   }, [ticketErrorConnect])

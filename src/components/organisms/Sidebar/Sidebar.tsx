@@ -1,13 +1,15 @@
 import React from 'react'
 import SidebarStyled from './SidebarStyled'
-import Filter from '../../molecules/Filter/Filter'
+import Filter, { IFilterItem } from '../../molecules/Filter/Filter'
 
-interface IProps {}
+interface IProps {
+  filterItems: IFilterItem[]
+}
 
 const Sidebar = (props: IProps) => {
   return (
     <SidebarStyled>
-      <Filter />
+      <Filter title="Количество пересадок" items={props.filterItems} />
     </SidebarStyled>
   )
 }

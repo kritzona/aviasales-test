@@ -8,6 +8,7 @@ import Wrapper from '../../atoms/Wrapper/Wrapper'
 import Tabs, { ITabItem } from '../../molecules/Tabs/Tabs'
 import Button from '../../atoms/Button/Button'
 import { ITicketItem } from '../../../store/ticket/types'
+import { IFilterItem } from '../../molecules/Filter/Filter'
 
 interface IProps {
   ticketLimit: number
@@ -23,6 +24,12 @@ const MainContent = (props: IProps) => {
     { id: 'fast', value: 'Самый быстрый', checked: false },
     { id: 'optimal', value: 'Оптимальный', checked: false },
   ]
+  const initialFilterItems: IFilterItem[] = [
+    { id: 'wo-stop', value: 'Без пересадок', checked: false },
+    { id: 'one-stop', value: '1 пересадка', checked: false },
+    { id: 'two-stops', value: '2 пересадки', checked: false },
+    { id: 'three-stops', value: '3 пересадки', checked: false },
+  ]
 
   const handleAddLimitButtonClick = () =>
     props.onAddLimit ? props.onAddLimit() : null
@@ -34,7 +41,7 @@ const MainContent = (props: IProps) => {
       <Wrapper>
         <Row gutter={true}>
           <Column size={4}>
-            <Sidebar />
+            <Sidebar filterItems={initialFilterItems} />
           </Column>
           <Column size={8}>
             <Row gutter={true}>

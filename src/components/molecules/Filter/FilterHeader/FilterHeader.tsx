@@ -2,13 +2,15 @@ import React from 'react'
 import FilterHeaderStyled from './FilterHeaderStyled'
 import Text from '../../../atoms/Text/Text'
 
-interface IProps {}
+interface IProps {
+  title: string
+}
 
 const FilterHeader = (props: IProps) => {
   return (
     <FilterHeaderStyled>
       <Text type="normal-text" weight="semibold" transform="uppercase">
-        Количество пересадок
+        {props.title}
       </Text>
     </FilterHeaderStyled>
   )
