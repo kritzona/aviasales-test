@@ -7,12 +7,7 @@ import {
   ticketFetchItemsAction,
   ticketTakeSearchIdAction,
 } from '../../store/ticket/actions'
-import {
-  sortTicketItemsByCheap,
-  sortTicketItemsByFast,
-  sortTicketItemsByOptimal,
-} from '../../utils/sort'
-import { filterTicketItemsByChangedStops } from '../../utils/filter'
+import { selectTicketItems } from '../../utils/selector'
 
 interface IProps {}
 
@@ -24,26 +19,12 @@ const MainContentContainer = (props: IProps) => {
     (state: RootState) => state.ticket.searchId,
   )
   const ticketItems = useSelector((state: RootState) => {
-    const copyTicketItems = state.ticket.items.slice()
-
-    const filteredTicketItems = copyTicketItems.filter((item) => {
-      return filterTicketItemsByChangedStops(item, changedStops)
-    })
-
-    const sortedTicketItems = filteredTicketItems.sort((a, b) => {
-      switch (changedSort) {
-        case 'cheap':
-          return sortTicketItemsByCheap(a, b)
-        case 'fast':
-          return sortTicketItemsByFast(a, b)
-        case 'optimal':
-          return sortTicketItemsByOptimal(a, b)
-        default:
-          return 0
-      }
-    })
-
-    return sortedTicketItems.slice(0, state.ticket.limit)
+    return selectTicketItems(
+      state.ticket.items,
+      changedSort,
+      changedStops,
+      state.ticket.limit,
+    )
   })
   const ticketTotalCount = useSelector(
     (state: RootState) => state.ticket.items.length,
