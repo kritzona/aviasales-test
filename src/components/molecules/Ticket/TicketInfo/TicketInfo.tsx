@@ -5,13 +5,15 @@ import Row from '../../../atoms/Row/Row'
 import Column from '../../../atoms/Column/Column'
 import { ITicketSegmentItem } from '../../../../store/ticket/types'
 import {
-  calcDestinationTime,
   formatOriginToDestination,
-  formatPeriodAtOriginToDestination,
   formatStopCount,
   formatStops,
 } from '../../../../utils/formatter'
-import { formatLeftoversTime } from '../../../../utils/date'
+import {
+  formatLeftoversTime,
+  formatPeriodAtOriginToDestination,
+  calcDestinationTime,
+} from '../../../../utils/date'
 
 interface IProps {
   segments: ITicketSegmentItem[]

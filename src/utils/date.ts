@@ -64,15 +64,6 @@ export const formatPeriod = (
 
   return `${formattedTimeOfStartDate} - ${formattedTimeOfEndDate}`
 }
-export const calcLeftoversTime = (
-  startDate: Date | string,
-  endDate: Date | string,
-) => {
-  const startDateToTimestamp = new Date(startDate).getTime()
-  const endDateToTimestamp = new Date(endDate).getTime()
-
-  return endDateToTimestamp - startDateToTimestamp
-}
 export const formatLeftoversTime = (
   startDate: Date | string,
   endDate: Date | string,
@@ -86,4 +77,32 @@ export const formatLeftoversTime = (
   return `${
     leftoversDays > 0 ? `${dayToString(leftoversDays)}д ` : ''
   }${leftoversHours}ч ${leftoversMinutes}м`
+}
+export const formatPeriodAtOriginToDestination = (
+  startDate: Date | string,
+  duration: number,
+) => {
+  const periodStartDate = new Date(startDate)
+  const periodEndDate = new Date(calcDestinationTime(startDate, duration))
+
+  return formatPeriod(periodStartDate, periodEndDate)
+}
+
+export const calcLeftoversTime = (
+  startDate: Date | string,
+  endDate: Date | string,
+) => {
+  const startDateToTimestamp = new Date(startDate).valueOf()
+  const endDateToTimestamp = new Date(endDate).valueOf()
+
+  return endDateToTimestamp - startDateToTimestamp
+}
+export const calcDestinationTime = (
+  startDate: Date | string,
+  duration: number,
+) => {
+  const startDateToTimestamp = new Date(startDate).valueOf()
+  const durationToTimestamp = duration * 60 * 1000
+
+  return new Date(startDateToTimestamp + durationToTimestamp)
 }

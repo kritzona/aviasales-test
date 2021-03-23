@@ -7,8 +7,12 @@ import {
   ticketFetchItemsAction,
   ticketTakeSearchIdAction,
 } from '../../store/ticket/actions'
-import { calcDestinationTime } from '../../utils/formatter'
-import { calcLeftoversTime } from '../../utils/date'
+import {
+  sortTicketItemsByCheap,
+  sortTicketItemsByFast,
+  sortTicketItemsByOptimal,
+} from '../../utils/sort'
+import { ITicketItem } from '../../store/ticket/types'
 
 interface IProps {}
 
@@ -19,29 +23,16 @@ const MainContentContainer = (props: IProps) => {
     (state: RootState) => state.ticket.searchId,
   )
   const ticketItems = useSelector((state: RootState) => {
-    const sortedTicketItems = state.ticket.items.sort((a, b) => {
+    const copyTicketItems = state.ticket.items.slice()
+
+    const sortedTicketItems = copyTicketItems.sort((a, b) => {
       switch (changedSort) {
         case 'cheap':
-          if (a.price > b.price) return 1
-          if (a.price < b.price) return -1
-
-          return 0
+          return sortTicketItemsByCheap(a, b)
         case 'fast':
-          const startDateA = a.segments[0] ? a.segments[0].date : new Date()
-          const endDateA = a.segments[0]
-            ? calcDestinationTime(startDateA, a.segments[0].duration)
-            : new Date()
-          const leftoversTimeA = calcLeftoversTime(startDateA, endDateA)
-
-          const startDateB = b.segments[0] ? b.segments[0].date : new Date()
-          const endDateB = b.segments[0]
-            ? calcDestinationTime(startDateB, b.segments[0].duration)
-            : new Date()
-          const leftoversTimeB = calcLeftoversTime(startDateB, endDateB)
-
-          return leftoversTimeA - leftoversTimeB
+          return sortTicketItemsByFast(a, b)
         case 'optimal':
-          return 0
+          return sortTicketItemsByOptimal(a, b)
         default:
           return 0
       }
@@ -68,19 +59,20 @@ const MainContentContainer = (props: IProps) => {
     // eslint-disable-next-line
   }, [])
   useEffect(() => {
-    if (ticketSearchId) dispatch(ticketFetchItemsAction(ticketSearchId))
+    if (ticketSearchId)
+      setTimeout(() => dispatch(ticketFetchItemsAction(ticketSearchId)), 200)
 
     // eslint-disable-next-line
   }, [ticketSearchId])
   useEffect(() => {
     if (ticketTotalCount > 0 && !ticketStop && ticketSearchId)
-      dispatch(ticketFetchItemsAction(ticketSearchId))
+      setTimeout(() => dispatch(ticketFetchItemsAction(ticketSearchId)), 200)
 
     // eslint-disable-next-line
   }, [ticketTotalCount])
   useEffect(() => {
     if (ticketErrorConnect && ticketSearchId)
-      dispatch(ticketFetchItemsAction(ticketSearchId))
+      setTimeout(() => dispatch(ticketFetchItemsAction(ticketSearchId)), 200)
 
     // eslint-disable-next-line
   }, [ticketErrorConnect])

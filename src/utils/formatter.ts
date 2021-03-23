@@ -1,5 +1,3 @@
-import { formatPeriod } from './date'
-
 export const formatPrice = (price: number, suffix: string): string => {
   const formattedPrice = Number(price).toLocaleString()
 
@@ -11,24 +9,6 @@ export const formatOriginToDestination = (
   destination: string,
 ) => {
   return `${origin} - ${destination}`
-}
-export const calcDestinationTime = (
-  startDate: Date | string,
-  duration: number,
-) => {
-  const startDateToTimestamp = new Date(startDate).getTime()
-  const durationToTimestamp = duration * 60 * 1000
-
-  return new Date(startDateToTimestamp + durationToTimestamp)
-}
-export const formatPeriodAtOriginToDestination = (
-  startDate: Date | string,
-  duration: number,
-) => {
-  const periodStartDate = new Date(startDate)
-  const periodEndDate = new Date(calcDestinationTime(startDate, duration))
-
-  return formatPeriod(periodStartDate, periodEndDate)
 }
 
 export const formatStopCount = (stopCount: number) => {

@@ -16,16 +16,18 @@ import {
 } from '../store/ticket/actions'
 
 function* takeSearchIdAsync() {
-  const response: TRestAPIResponse<ITicketAPISearchIdResponseData> = yield call(
-    ticketAPI.takeSearchId,
-  )
-  switch (response.status) {
-    case ERestAPIStatuses.SUCCESS:
-      let searchId = response.data.searchId
+  try {
+    const response: TRestAPIResponse<ITicketAPISearchIdResponseData> = yield call(
+      ticketAPI.takeSearchId,
+    )
+    switch (response.status) {
+      case ERestAPIStatuses.SUCCESS:
+        let searchId = response.data.searchId
 
-      yield put(ticketSetSearchIdAction(searchId))
-      break
-  }
+        yield put(ticketSetSearchIdAction(searchId))
+        break
+    }
+  } catch (e) {}
 }
 
 function* fetchItemsAsync(action: ITicketFetchItemsAction) {
