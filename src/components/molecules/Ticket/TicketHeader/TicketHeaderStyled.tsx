@@ -4,6 +4,10 @@ import S7LogoImageSource from '../../../../assets/images/s7-logo.png'
 interface IProps {
   theme: DefaultTheme
 }
+interface ILogoProps {
+  imageSource: string
+  theme: DefaultTheme
+}
 
 const TicketHeaderStyled = styled.div<IProps>`
   ${({ theme }) => css`
@@ -18,13 +22,13 @@ export const TicketHeaderPriceStyled = styled.div<IProps>`
     color: ${theme.colors.primaryColor};
   `}
 `
-export const TicketHeaderLogoStyled = styled.div<IProps>`
-  ${({ theme }) => css`
+export const TicketHeaderLogoStyled = styled.div<ILogoProps>`
+  ${({ theme, imageSource }) => css`
     width: 110px;
     height: 36px;
-    background-image: url(${S7LogoImageSource});
+    background-image: url(${imageSource});
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: right center;
     background-size: contain;
   `}
 `

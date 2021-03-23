@@ -5,9 +5,11 @@ import TicketHeaderStyled, {
 } from './TicketHeaderStyled'
 import Text from '../../../atoms/Text/Text'
 import { formatPrice } from '../../../../utils/formatter'
+import { generateAviacompanyLogotype } from '../../../../utils/aviacompany-logotype'
 
 interface IProps {
   price: number
+  carrier: string
 }
 
 const TicketHeader = (props: IProps) => {
@@ -18,7 +20,9 @@ const TicketHeader = (props: IProps) => {
           {formatPrice(props.price, 'Р')}
         </Text>
       </TicketHeaderPriceStyled>
-      <TicketHeaderLogoStyled />
+      <TicketHeaderLogoStyled
+        imageSource={generateAviacompanyLogotype(props.carrier)}
+      />
     </TicketHeaderStyled>
   )
 }
