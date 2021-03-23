@@ -5,7 +5,7 @@ import Column from '../../atoms/Column/Column'
 import Sidebar from '../Sidebar/Sidebar'
 import Tickets from '../Tickets/Tickets'
 import Wrapper from '../../atoms/Wrapper/Wrapper'
-import Tabs from '../../molecules/Tabs/Tabs'
+import Tabs, { ITabItem } from '../../molecules/Tabs/Tabs'
 import Button from '../../atoms/Button/Button'
 import { ITicketItem } from '../../../store/ticket/types'
 
@@ -17,6 +17,11 @@ interface IProps {
 }
 
 const MainContent = (props: IProps) => {
+  const initialTabItems: ITabItem[] = [
+    { id: 'cheap', value: 'Самый дешевый', checked: true },
+    { id: 'fast', value: 'Самый быстрый', checked: false },
+    { id: 'optimal', value: 'Оптимальный', checked: false },
+  ]
   const handleAddLimitButtonClick = () =>
     props.onAddLimit ? props.onAddLimit() : null
 
@@ -30,7 +35,7 @@ const MainContent = (props: IProps) => {
           <Column size={8}>
             <Row gutter={true}>
               <Column size={12}>
-                <Tabs />
+                <Tabs items={initialTabItems} />
               </Column>
               <Column size={12}>
                 <Tickets items={props.ticketItems} />
