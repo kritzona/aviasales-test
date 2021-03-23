@@ -18,6 +18,7 @@ const TabsStyled = styled.div<IProps>`
 export const TabItemWrapperStyled = styled.div<IProps>`
   ${({ theme }) => css`
     width: 100%;
+    height: 100%;
 
     &:not(:first-child) {
       border-left: 1px solid ${theme.colors.lightGreyColor};

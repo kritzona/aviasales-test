@@ -43,7 +43,7 @@ const MainContent = (props: IProps) => {
     <MainContentStyled>
       <Wrapper>
         <Row gutter={true}>
-          <Column size={4}>
+          <Column size={4} phabletSize={12} mobileSize={12}>
             <Sidebar
               filterItems={initialFilterItems}
               onFilterChange={(checkedIdList) =>
@@ -51,7 +51,7 @@ const MainContent = (props: IProps) => {
               }
             />
           </Column>
-          <Column size={8}>
+          <Column size={8} phabletSize={12} mobileSize={12}>
             <Row gutter={true}>
               <Column size={12}>
                 <Tabs
