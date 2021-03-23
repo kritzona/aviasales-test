@@ -52,6 +52,9 @@ const MainContentContainer = (props: IProps) => {
 
   const handleAddLimit = () => dispatch(ticketAddLimitAction(5))
   const handleSortChange = (id: string | number) => setChangedSort(id)
+  const handleFilterChange = (checkedIdList: (string | number)[]) => {
+    console.log(checkedIdList)
+  }
 
   useEffect(() => {
     dispatch(ticketTakeSearchIdAction())
@@ -83,6 +86,7 @@ const MainContentContainer = (props: IProps) => {
       ticketItems={ticketItems}
       onAddLimit={() => handleAddLimit()}
       onSortChange={(id) => handleSortChange(id)}
+      onFilterChange={(checkedIdList) => handleFilterChange(checkedIdList)}
     />
   )
 }

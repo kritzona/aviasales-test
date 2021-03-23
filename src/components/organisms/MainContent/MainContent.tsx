@@ -16,6 +16,7 @@ interface IProps {
   ticketItems: ITicketItem[]
   onAddLimit?: () => void
   onSortChange?: (id: string | number) => void
+  onFilterChange?: (checkedIdList: (string | number)[]) => void
 }
 
 const MainContent = (props: IProps) => {
@@ -35,13 +36,20 @@ const MainContent = (props: IProps) => {
     props.onAddLimit ? props.onAddLimit() : null
   const handleSortChange = (id: string | number) =>
     props.onSortChange ? props.onSortChange(id) : null
+  const handleFilterChange = (checkedIdList: (string | number)[]) =>
+    props.onFilterChange ? props.onFilterChange(checkedIdList) : null
 
   return (
     <MainContentStyled>
       <Wrapper>
         <Row gutter={true}>
           <Column size={4}>
-            <Sidebar filterItems={initialFilterItems} />
+            <Sidebar
+              filterItems={initialFilterItems}
+              onFilterChange={(checkedIdList) =>
+                handleFilterChange(checkedIdList)
+              }
+            />
           </Column>
           <Column size={8}>
             <Row gutter={true}>
