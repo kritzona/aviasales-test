@@ -40,15 +40,7 @@ const TicketInfo = (props: IProps) => {
             <Column size={4}>
               <TicketInfoItem
                 title="В пути"
-                value={formatLeftoversTime(
-                  new Date(segment.date),
-                  new Date(
-                    calcDestinationTime(
-                      new Date(segment.date),
-                      segment.duration,
-                    ),
-                  ),
-                )}
+                value={formatLeftoversTime(segment.duration)}
               />
             </Column>
             <Column size={4}>
