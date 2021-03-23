@@ -12,12 +12,13 @@ import {
   sortTicketItemsByFast,
   sortTicketItemsByOptimal,
 } from '../../utils/sort'
+import { filterTicketItemsByChangedStops } from '../../utils/filter'
 
 interface IProps {}
 
 const MainContentContainer = (props: IProps) => {
   const [changedSort, setChangedSort] = useState<string | number>('cheap')
-  const [changedStops, setChangedStops] = useState<string[] | number[]>([])
+  const [changedStops, setChangedStops] = useState<(string | number)[]>([])
 
   const ticketSearchId = useSelector(
     (state: RootState) => state.ticket.searchId,
@@ -25,7 +26,11 @@ const MainContentContainer = (props: IProps) => {
   const ticketItems = useSelector((state: RootState) => {
     const copyTicketItems = state.ticket.items.slice()
 
-    const sortedTicketItems = copyTicketItems.sort((a, b) => {
+    const filteredTicketItems = copyTicketItems.filter((item) => {
+      return filterTicketItemsByChangedStops(item, changedStops)
+    })
+
+    const sortedTicketItems = filteredTicketItems.sort((a, b) => {
       switch (changedSort) {
         case 'cheap':
           return sortTicketItemsByCheap(a, b)
@@ -52,9 +57,8 @@ const MainContentContainer = (props: IProps) => {
 
   const handleAddLimit = () => dispatch(ticketAddLimitAction(5))
   const handleSortChange = (id: string | number) => setChangedSort(id)
-  const handleFilterChange = (checkedIdList: (string | number)[]) => {
-    console.log(checkedIdList)
-  }
+  const handleFilterChange = (checkedIdList: (string | number)[]) =>
+    setChangedStops(checkedIdList)
 
   useEffect(() => {
     dispatch(ticketTakeSearchIdAction())
