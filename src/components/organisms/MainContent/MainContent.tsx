@@ -14,6 +14,7 @@ interface IProps {
   ticketTotalCount: number
   ticketItems: ITicketItem[]
   onAddLimit?: () => void
+  onSortChange?: (id: string | number) => void
 }
 
 const MainContent = (props: IProps) => {
@@ -22,8 +23,11 @@ const MainContent = (props: IProps) => {
     { id: 'fast', value: 'Самый быстрый', checked: false },
     { id: 'optimal', value: 'Оптимальный', checked: false },
   ]
+
   const handleAddLimitButtonClick = () =>
     props.onAddLimit ? props.onAddLimit() : null
+  const handleSortChange = (id: string | number) =>
+    props.onSortChange ? props.onSortChange(id) : null
 
   return (
     <MainContentStyled>
@@ -35,7 +39,10 @@ const MainContent = (props: IProps) => {
           <Column size={8}>
             <Row gutter={true}>
               <Column size={12}>
-                <Tabs items={initialTabItems} />
+                <Tabs
+                  items={initialTabItems}
+                  onChange={(id) => handleSortChange(id)}
+                />
               </Column>
               <Column size={12}>
                 <Tickets items={props.ticketItems} />

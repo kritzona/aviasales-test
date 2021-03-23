@@ -11,10 +11,17 @@ export interface ITabItem {
 
 interface IProps {
   items: ITabItem[]
+  onChange?: (id: string | number) => void
 }
 
 const Tabs = (props: IProps) => {
   const [localItems, setLocalItems] = useState(props.items)
+
+  const handleTabItemClick = (id: string | number) => {
+    checkItem(id)
+
+    if (props.onChange) props.onChange(id)
+  }
 
   const checkItem = (id: string | number) => {
     setLocalItems(
@@ -33,7 +40,7 @@ const Tabs = (props: IProps) => {
         return (
           <TabItemWrapperStyled
             key={item.id}
-            onClick={() => checkItem(item.id)}
+            onClick={() => handleTabItemClick(item.id)}
           >
             <TabItem checked={item.checked}>
               <Text type="normal-text" transform="uppercase" weight="semibold">

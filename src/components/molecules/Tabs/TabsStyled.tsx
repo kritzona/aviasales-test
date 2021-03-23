@@ -23,8 +23,12 @@ export const TabItemWrapperStyled = styled.div<IProps>`
       border-left: 1px solid ${theme.colors.lightGreyColor};
     }
 
-    &:hover,
-    &:hover + div {
+    &:hover:not(:first-child),
+    &:hover:not(:first-child) + div {
+      border-left: 1px solid ${theme.colors.primaryColor};
+    }
+
+    &:hover:first-child + div {
       border-left: 1px solid ${theme.colors.primaryColor};
     }
   `}
