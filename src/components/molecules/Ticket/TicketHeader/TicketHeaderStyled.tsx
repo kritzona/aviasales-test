@@ -1,5 +1,4 @@
 import styled, { css, DefaultTheme } from 'styled-components'
-import S7LogoImageSource from '../../../../assets/images/s7-logo.png'
 
 interface IProps {
   theme: DefaultTheme
