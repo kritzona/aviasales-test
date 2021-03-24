@@ -12,7 +12,6 @@ import {
 import {
   formatLeftoversTime,
   formatPeriodAtOriginToDestination,
-  calcDestinationTime,
 } from '../../../../utils/date'
 
 interface IProps {
