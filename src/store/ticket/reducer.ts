@@ -1,11 +1,8 @@
 import { ETicketActionTypes, ITicketState, TTicketAction } from './types'
 
 const initialState: ITicketState = {
-  searchId: null,
   items: [],
-  stop: false,
   limit: 5,
-  errorConnect: false,
 }
 
 export const ticketReducer = (
@@ -22,20 +19,11 @@ export const ticketReducer = (
     case ETicketActionTypes.RESET:
       state = initialState
       return state
-    case ETicketActionTypes.SET_STOP:
-      state.stop = action.payload.stop
-      return state
-    case ETicketActionTypes.SET_SEARCH_ID:
-      state.searchId = action.payload.searchId
-      return state
     case ETicketActionTypes.ADD_LIMIT:
       state.limit = state.limit + action.payload.limit
       return state
     case ETicketActionTypes.RESET_LIMIT:
       state.limit = initialState.limit
-      return state
-    case ETicketActionTypes.SET_ERROR_CONNECT:
-      state.errorConnect = action.payload.errorConnect
       return state
     default:
       return state

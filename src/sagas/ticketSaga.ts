@@ -10,9 +10,8 @@ import ticketAPI, {
 import { ERestAPIStatuses, TRestAPIResponse } from '../api/RestAPI'
 import {
   ticketAddItemsAction,
-  ticketSetErrorConnectAction,
-  ticketSetSearchIdAction,
-  ticketSetStopAction,
+  ticketFetchItemsAction,
+  ticketTakeSearchIdAction,
 } from '../store/ticket/actions'
 
 function* takeSearchIdAsync() {
@@ -24,8 +23,10 @@ function* takeSearchIdAsync() {
       case ERestAPIStatuses.SUCCESS:
         let searchId = response.data.searchId
 
-        yield put(ticketSetSearchIdAction(searchId))
+        yield call(fetchItemsAsync, ticketFetchItemsAction(searchId))
         break
+      case ERestAPIStatuses.ERROR:
+        yield put(ticketTakeSearchIdAction())
     }
   } catch (e) {}
 }
@@ -41,12 +42,12 @@ function* fetchItemsAsync(action: ITicketFetchItemsAction) {
         let ticketItems = response.data.tickets
         let stop = response.data.stop
 
-        yield put(ticketSetStopAction(stop))
         yield put(ticketAddItemsAction(ticketItems))
-        yield put(ticketSetErrorConnectAction(false))
+
+        if (!stop) yield put(ticketFetchItemsAction(action.payload.searchId))
         break
       case ERestAPIStatuses.ERROR:
-        yield put(ticketSetErrorConnectAction(true))
+        yield put(ticketFetchItemsAction(action.payload.searchId))
         break
     }
   } catch (e) {}

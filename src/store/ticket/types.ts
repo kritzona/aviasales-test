@@ -20,11 +20,8 @@ export interface ITicketItem {
   segments: [ITicketSegmentItem, ITicketSegmentItem]
 }
 export interface ITicketState {
-  searchId: string | null
   items: ITicketItem[]
-  stop: boolean
   limit: number
-  errorConnect: boolean
 }
 
 export enum ETicketActionTypes {
@@ -33,11 +30,8 @@ export enum ETicketActionTypes {
   RESET = 'ticket/RESET',
   FETCH_ITEMS = 'ticket/FETCH_ITEMS',
   TAKE_SEARCH_ID = 'ticket/TAKE_SEARCH_ID',
-  SET_STOP = 'ticket/SET_STOP',
-  SET_SEARCH_ID = 'ticket/SET_SEARCH_ID',
   ADD_LIMIT = 'ticket/ADD_LIMIT',
   RESET_LIMIT = 'ticket/RESET_LIMIT',
-  SET_ERROR_CONNECT = 'ticket/SET_ERROR_CONNECT',
 }
 
 export interface ITicketAddItemAction {
@@ -58,24 +52,12 @@ export interface ITicketFetchItemsAction {
 export interface ITicketTakeSearchIdAction {
   type: ETicketActionTypes.TAKE_SEARCH_ID
 }
-export interface ITicketSetStopAction {
-  type: ETicketActionTypes.SET_STOP
-  payload: { stop: boolean }
-}
-export interface ITicketSetSearchIdAction {
-  type: ETicketActionTypes.SET_SEARCH_ID
-  payload: { searchId: string }
-}
 export interface ITicketAddLimitAction {
   type: ETicketActionTypes.ADD_LIMIT
   payload: { limit: number }
 }
 export interface ITicketResetLimitAction {
   type: ETicketActionTypes.RESET_LIMIT
-}
-export interface ITicketSetErrorConnectAction {
-  type: ETicketActionTypes.SET_ERROR_CONNECT
-  payload: { errorConnect: boolean }
 }
 
 export type TTicketAction =
@@ -84,8 +66,5 @@ export type TTicketAction =
   | ITicketResetAction
   | ITicketFetchItemsAction
   | ITicketTakeSearchIdAction
-  | ITicketSetStopAction
-  | ITicketSetSearchIdAction
   | ITicketAddLimitAction
   | ITicketResetLimitAction
-  | ITicketSetErrorConnectAction
